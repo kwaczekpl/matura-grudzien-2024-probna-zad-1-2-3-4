@@ -54,9 +54,18 @@ int zad2(int x, int p)
 int main()
 {
 	//zad1();
-	int x = 130, p = 3;
-	cout << zad2(x,p) << " ";
-	cout << licznik;
+	int x = 100, p = 3;
+	for (int i = 1; i < x; i++)
+	{
+		if (zad2(x - i, p) == 0)
+		{
+			cout << x - i << " ";
+			break;
+		}
+		
+	}
+	
+	//cout << licznik;
 	//int a = 19;
 
 	
