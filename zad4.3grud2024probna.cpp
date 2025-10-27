@@ -4,70 +4,92 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
 long long h, s, pole;
-ifstream plik("prostokaty.txt");
+ifstream plik("prostokaty_przyklad.txt");
 
 int main()
 {
 
 
 	vector<int> wysokosc;
-	vector<int> szerokoœæ;
-	vector<int> pole;
-
-
-	int ciag = 1;
+	vector<int> szerokosc;
+	vector<long long> szerokosciPO;
+	vector<long long> liczenie;
+	vector<long long> usuniete;
 
 	while (plik >> h >> s)
 	{
 		wysokosc.push_back(h);
-		szerokoœæ.push_back(s);
-
+		szerokosc.push_back(s);
 	}
 
-	int max = 0;
-	int ost_h = 0;
-	int ost_s = 0;
+	long long sumaSzer = 0;
+	long long licz = 0;
+	int count = 0;
 
-	for (int i = 0; i + 2 <= wysokosc.size(); ++i)
+	for (int i = 0; i < wysokosc.size(); i++)
 	{
-		if ((wysokosc.at(i) >= wysokosc.at(i + 1)) && (szerokoœæ.at(i) >= szerokoœæ.at(i + 1)))
+		for (int j = 0; j < wysokosc.size(); j++)
 		{
-			ciag++;
+			if(wysokosc.at(i) == wysokosc.at(j))
+			{
+				licz++;
+				sumaSzer = sumaSzer + szerokosc.at(j);
 
+				if (licz == 4)
+				{
+					usuniete.push_back(szerokosc.at(j));
+				}
+				if (licz == 5)
+				{
+					break;
+				}
+				
+				
+			}
+			
+			
+		}
+		//cout << sumaSzer << '\n';
+		if (licz == 1)
+		{
+			
 		}
 		else
 		{
-			if (max < ciag)
+			
+			if (licz == 4)
 			{
-				max = ciag;
-				ost_h = wysokosc.at(i);
-				ost_s = szerokoœæ.at(i);
-
-				//cout << max;
+				licz = licz - 1;
+				sumaSzer = sumaSzer - usuniete[count];
+				count++;
 			}
 
-			ciag = 1;
+			liczenie.push_back(licz);
+			//cout << licz << " ";
+
+			szerokosciPO.push_back(sumaSzer);
 		}
+		licz = 0;
+		sumaSzer = 0;
 	}
 
-	std::cout << max << " ";
-	std::cout << ost_h << " " << ost_s << '\n';
-
-	//for (auto liczba : wysokosc)
+	//for (auto liczba : liczenie)
 	//{
-	//	//cout << liczba << ' ';
+	//	cout << liczba << ' ';
 	//	
 	//}
 
+	//cout << '\n'; 
 
-	/*for (auto liczba : pole)
-	{
-		cout << liczba << '\n';
-	}*/
+	//for (auto liczba : szerokosciPO)
+	//{
+	//	cout << liczba << '\n';
+	//}
 
 
 }
