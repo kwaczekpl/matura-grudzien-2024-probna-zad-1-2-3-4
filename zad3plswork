@@ -1,0 +1,80 @@
+#include<iostream>
+#include <string>
+#include <fstream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <map>
+
+using namespace std;
+
+long long h, s;
+ifstream plik("C:\\Users\\63matura\\source\\repos\\zad3Mat25czerw\\zad3Mat25czerw\\prostokaty_przyklad.txt");
+
+
+int A[5000][5000];
+
+
+
+int main()
+{
+	vector<int> wysokosc;
+	
+	vector<long long> szerokosciPO;
+	vector<long long> liczenie;
+	vector<long long> usuniete;
+
+	
+
+	
+	
+
+	while (plik >> h >> s)
+	{
+		A[h][s];
+	}
+
+	int n = 5000;
+	long long sumaSzer = 0;
+
+	long long sumaszer_2 = 0, sumaszer_3 = 0, sumaszer_5 = 0;
+
+	for (int i = 1; i < n; i++)
+	{
+		int h = A[i][0];
+		vector<int> szerokosc;
+
+		for (int j = 0; j < wysokosc.size(); j++)
+		{
+			if (A[j][0] == h)
+			{
+				szerokosc.push_back(A[j][1]);
+
+			}
+
+		}
+		sort(szerokosc.rbegin(), szerokosc.rend());
+
+		if (szerokosc.size() >= 2)
+		{
+			long long suma = (long long)szerokosc[0] + szerokosc[1];
+			if(suma > sumaszer_2)
+				sumaszer_2 = suma;
+		}
+
+		if (szerokosc.size() >= 3)
+		{
+			long long suma = (long long)szerokosc[0] + szerokosc[1] + szerokosc[2];
+			if (suma > sumaszer_3)
+				sumaszer_3 = suma;
+		}
+
+		if (szerokosc.size() >= 2)
+		{
+			long long suma = (long long)szerokosc[0] + szerokosc[1] + szerokosc[2] +szerokosc[3] +szerokosc[4];
+			if (suma > sumaszer_5)
+				sumaszer_5 = suma;
+		}
+	}
+
+}
